@@ -135,9 +135,9 @@ def initialize_db():
 
     db.session.add(new_user)
     db.session.commit()
-    db.session.refresh(new_user)
-    retrieved_user = User.query.get(1)
-    flash(f"from  database: {retrieved_user.posts[0]}")
+    # db.session.refresh(new_user)
+    # retrieved_user = User.query.get(1)
+    # flash(f"from  database: {retrieved_user.posts[0]}")
 
 @app.route('/')
 def get_all_posts():
@@ -301,7 +301,7 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
-initialize_db()  # only need to do this the first time the code is run
+# initialize_db()  # only need to do this the first time the code is run
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001)
 
