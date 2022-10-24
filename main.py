@@ -12,6 +12,7 @@ from secrets import token_hex
 from functools import wraps
 from flask_debugtoolbar import DebugToolbarExtension
 # Run Pydoc window with: python -m pydoc -p <port_number>
+# Using heroku, gunicorn. Need to have Procfile in root directory.
 
 
 
