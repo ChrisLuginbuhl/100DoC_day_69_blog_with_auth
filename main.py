@@ -20,7 +20,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 Flask.secret_key = token_hex(16)
 app = Flask(__name__)
-app.config['SECRET_KEY'] = token_hex(32)
+# app.config['SECRET_KEY'] = token_hex(32)
+app.config['SECRET_KEY'] = os.environ.get('APP_SECRET_KEY')
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -135,10 +136,7 @@ def initialize_db():
 
     db.session.add(new_user)
     db.session.commit()
-    # db.session.refresh(new_user)
-    # retrieved_user = User.query.get(1)
-    # flash(f"from  database: {retrieved_user.posts[0]}")
-
+    # s
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.all()
