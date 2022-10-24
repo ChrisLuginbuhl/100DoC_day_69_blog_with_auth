@@ -57,7 +57,7 @@ class BlogPost(db.Model):
     __tablename__ = "blog_posts"
     id = db.Column(db.Integer, primary_key=True)
     # Create Foreign Key, "users.id" the users refers to the tablename of User. Note this should have been an Int but too late now.
-    author_id = db.Column(db.String(250), db.ForeignKey('users.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # Create reference to the User object, the "posts" refers to the posts property in the User class.
     author = relationship("User", back_populates='posts')
     title = db.Column(db.String(250), unique=True, nullable=False)
@@ -298,7 +298,7 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
-initialize_db()
+# initialize_db()  # only need to do this the first time the code is run
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001)
 
